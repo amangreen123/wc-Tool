@@ -3,15 +3,29 @@
 #include<iostream>
 #include <string>
 #include <vector>
+#include <regex>
 
 
 
-int main() {
+bool isValidInput(const std::string& input) {
+
+	std::regex inputRegex("^(-[clwm]+)$");
+
+	if (!std::regex_match(input, inputRegex)) {
+		std::cout << "Error: Invalid input format. Expected format: -c, -l, -w, or -m" << std::endl;
+		return false;
+	}
+
+	return true;
+
+}
+
+int main(int argc, char* argv[]) {
 
 	std::string line;
 	std::ifstream myfile;
 	std::vector<std::string> words;
-
+	std::string input;
 
 	myfile.open("test.txt");
 
@@ -21,9 +35,16 @@ int main() {
 	}
 
 	if (myfile.is_open()) {
+		
 		while (getline(myfile, line)) {
 			words.push_back(line);
-			std::cout << line << '\n';
+
+			if (isValidInput(input)) {
+				myfile.seekg(0);
+				int byte_Size = myfile.tellg();
+				std::cout << byte_Size;
+			}
+			
 		}
 		myfile.close();
 	}
