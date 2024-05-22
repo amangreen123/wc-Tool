@@ -37,11 +37,9 @@ int main(int argc, char* argv[]) {
 	if (myfile.is_open()) {
 		
 		while (getline(myfile, line)) {
-				
-				words.push_back(line);
+				/*words.push_back(line);
 				int byte_Size = myfile.tellg();
-				std::cout << byte_Size;
-			
+				std::cout << byte_Size;*/
 			
 		}
 		myfile.close();
