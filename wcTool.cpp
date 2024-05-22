@@ -7,18 +7,18 @@
 
 
 
-bool isValidInput(const std::string& input) {
-
-	std::regex inputRegex("^(-[clwm]+)$");
-
-	if (!std::regex_match(input, inputRegex)) {
-		std::cout << "Error: Invalid input format. Expected format: -c, -l, -w, or -m" << std::endl;
-		return false;
-	}
-
-	return true;
-
-}
+//bool isValidInput(const std::string& input) {
+//
+//	std::regex inputRegex("^(-[clwm]+)$");
+//
+//	if (!std::regex_match(input, inputRegex)) {
+//		std::cout << "Error: Invalid input format. Expected format: -c, -l, -w, or -m" << std::endl;
+//		return false;
+//	}
+//
+//	return true;
+//
+//}
 
 int main(int argc, char* argv[]) {
 
@@ -37,13 +37,11 @@ int main(int argc, char* argv[]) {
 	if (myfile.is_open()) {
 		
 		while (getline(myfile, line)) {
-			words.push_back(line);
-
-			if (isValidInput(input)) {
-				myfile.seekg(0);
+				
+				words.push_back(line);
 				int byte_Size = myfile.tellg();
 				std::cout << byte_Size;
-			}
+			
 			
 		}
 		myfile.close();

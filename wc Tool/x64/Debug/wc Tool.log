@@ -1,3 +1,3 @@
 ﻿  wcTool.cpp
-C:\Users\aaron\OneDrive\Desktop\Github\wc Tool\wcTool.cpp(44,19): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\aaron\OneDrive\Desktop\Github\wc Tool\wcTool.cpp(42,19): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
   wc Tool.vcxproj -> C:\Users\aaron\OneDrive\Desktop\Github\wc Tool\x64\Debug\wc Tool.exe
