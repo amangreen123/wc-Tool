@@ -3,69 +3,87 @@
 #include<iostream>
 #include <string>
 #include <vector>
-#include <regex>
+#include <sstream>
 
 
 
-//bool isValidInput(const std::string& input) {
-//
-//	std::regex inputRegex("^(-[clwm]+)$");
-//
-//	if (!std::regex_match(input, inputRegex)) {
-//		std::cout << "Error: Invalid input format. Expected format: -c, -l, -w, or -m" << std::endl;
-//		return false;
-//	}
-//
-//	return true;
-//
-//}
+
+int countNumberofBytes(std::ifstream& f) {
+	
+	std::string lines{};
+
+	while (std::getline(f, lines)) {
+
+		f.seekg(0, std::ios::end);
+		int byteSize = f.tellg();
+
+		return byteSize;
+	}
+
+}
+
+int countNumberofLines(std::ifstream& f) {
+
+	std::string lines{};
+	int numberOfLines = 0;
+
+	while (std::getline(f, lines)) {
+		numberOfLines++;
+	}
+
+	return numberOfLines;
+
+}
+
+int countNumberOfWords(std::ifstream& f) {
+	int numOfWords = 0;
+	std::string line;
+
+	while (std::getline(f, line)) {
+		
+		std::stringstream linestream(line);
+		std::string word;
+
+		while (linestream >> word) { // Read word by word
+			++numOfWords;
+		}
+	}
+
+	return numOfWords;
+}
+
 
 int main(int argc, char* argv[]) {
 
-	std::string line;
+	std::string lines{};
 	std::ifstream myFile{ "test.txt" };
-	std::vector<std::string> words;
-	std::string input;
+
 
 	if (!myFile) {
 		std::cerr << "Can't open File\n";
 		return 1;
 	}
 
-	std::string strInput{};
-	while (std::getline(myFile, strInput)) {
 
-		myFile.seekg(0, std::ios::end);
-		int byteSize = myFile.tellg();
+		int byteCount = countNumberofBytes(myFile);
+		int lineCount = countNumberofLines(myFile);
+		int wordCount = countNumberOfWords(myFile);
 
-		std::cout << "Size of the file is" << byteSize << " ";
-	}		
+
+		std::cout << "Number of bytes: " << byteCount << std::endl;
+		std::cout << "Number of lines: " << lineCount << std::endl;
+		std::cout << "Number of words: " << wordCount << std::endl;
+	
+	
+		//Bytes number 342190
+		//lines number 7145
+		//word number 58164
+
+	myFile.close();
 
 	return 0;
-
-
 }
 
-	/*myfile.open("test.txt");
-
-	if (!myfile) {
-		std::cout << "Unable to open file";
-		exit(1);
-	}
-
-	if (myfile.is_open()) {
-		
-		while (std::getline(myfile, line)) {
-			  myfile.seekg(0);
-			  int byte_Size = myfile.tellg();
-			  std::cout << byte_Size << '\n';
-		}
-
-		myfile.close();
-	}
-
-	else {
-		std::cout << "Unable to open file";
-	}*/
+	
 
 
