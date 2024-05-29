@@ -23,11 +23,30 @@
 int main(int argc, char* argv[]) {
 
 	std::string line;
-	std::ifstream myfile;
+	std::ifstream myFile{ "test.txt" };
 	std::vector<std::string> words;
 	std::string input;
 
-	myfile.open("test.txt");
+	if (!myFile) {
+		std::cerr << "Can't open File\n";
+		return 1;
+	}
+
+	std::string strInput{};
+	while (std::getline(myFile, strInput)) {
+
+		myFile.seekg(0, std::ios::end);
+		int byteSize = myFile.tellg();
+
+		std::cout << "Size of the file is" << byteSize << " ";
+	}		
+
+	return 0;
+
+
+}
+
+	/*myfile.open("test.txt");
 
 	if (!myfile) {
 		std::cout << "Unable to open file";
@@ -36,17 +55,17 @@ int main(int argc, char* argv[]) {
 
 	if (myfile.is_open()) {
 		
-		while (getline(myfile, line)) {
-				/*words.push_back(line);
-				int byte_Size = myfile.tellg();
-				std::cout << byte_Size;*/
-			
+		while (std::getline(myfile, line)) {
+			  myfile.seekg(0);
+			  int byte_Size = myfile.tellg();
+			  std::cout << byte_Size << '\n';
 		}
+
 		myfile.close();
 	}
 
 	else {
 		std::cout << "Unable to open file";
-	}
+	}*/
 
-}
+

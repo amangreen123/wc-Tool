@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\aaron\\OneDrive\\Desktop\\Github\\wc Tool\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C90730ED-5D5A-468C-9C1A-D1E88E96810B}|wc Tool.vcxproj|C:\\Users\\aaron\\OneDrive\\Desktop\\Github\\wc Tool\\wcTool.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C90730ED-5D5A-468C-9C1A-D1E88E96810B}|wc Tool.vcxproj|solutionrelative:wcTool.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "wcTool.cpp",
+              "DocumentMoniker": "C:\\Users\\aaron\\OneDrive\\Desktop\\Github\\wc Tool\\wcTool.cpp",
+              "RelativeDocumentMoniker": "wcTool.cpp",
+              "ToolTip": "C:\\Users\\aaron\\OneDrive\\Desktop\\Github\\wc Tool\\wcTool.cpp*",
+              "RelativeToolTip": "wcTool.cpp*",
+              "ViewState": "AQIAACIAAAAAAAAAAAAwwCgAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-29T17:44:55.21Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
