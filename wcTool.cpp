@@ -55,23 +55,9 @@ int countNumberOfWords(std::ifstream& f) {
 int countNumberOfCharacters(std::ifstream& f) {	
 	
 	int numberOfCharacters = 0;
+	std::string input;
 	std::string lines{};
 	char current_char = '\0';
-	char last_char = '\0';
-
-
-
-	/*while (true) {
-
-		if (f.peek() == -1)
-			break;
-		current_char = f.get();
-
-		if (current_char != '\n')
-			++numberOfCharacters;
-	}
-
-	return numberOfCharacters;*/
 
 
 
@@ -82,63 +68,76 @@ int countNumberOfCharacters(std::ifstream& f) {
 	}
 		return numberOfCharacters;
 
-	/*while (std::getline(f, lines)) {	
-		numberOfCharacters += lines.length();
+}
 
-		return numberOfCharacters;
-		
-		gets 69
-	}*/
+bool checkValidInput(std::string input) {
+	// Check if the input is valid  -c, -l and -w are valid inputs
 
-	/*f.seekg(0, std::ios_base::end);
-	std::ios_base::streampos end_pos = f.tellg();
-	gets -1
-	return end_pos;*/
-
-	/*while (1)
-	{
-		f.get(current_char);
-		if (f.eof()) break;
-		
-		numberOfCharacters++;
+	if (input == "-c" || input == "-l" || input == "-w" || input == "-m") {
+		return true;
 	}
-
-	return numberOfCharacters;*/
-
+	else {
+		return false;
+	}
 }
 
 
 int main(int argc, char* argv[]) {
+    std::string lines{};
+    std::ifstream myFile{ "test.txt" };
+    std::cout << argv[0] << std::endl;
 
-	std::string lines{};
-	std::ifstream myFile{ "test.txt" };
-
-
-	if (!myFile) {
-		std::cerr << "Can't open File\n";
-		
-		return 1;
-	}
-
-		//int byteCount = countNumberofBytes(myFile);
-		//int lineCount = countNumberofLines(myFile);
-		//int wordCount = countNumberOfWords(myFile);
-		int charCount = countNumberOfCharacters(myFile);
+    
+	char option = std::string(argv[1])[1];
 
 
-		//std::cout << "Number of bytes: " << byteCount << std::endl;
-		//std::cout << "Number of lines: " << lineCount << std::endl;
-		//std::cout << "Number of words: " << wordCount << std::endl;
-		std::cout << "Number of characters" << charCount << std::endl;
-	
-		//Bytes number 342190
-		//lines number 7145
-		//word number 58164
-		//character 339292
+    if (argc == 2 && std::cin.peek()) {
 
-	myFile.close();
+		if (!checkValidInput(std::string(argv[1])))
+		{
+			std::cerr << "Usage: " << argv[0] << " <-l | -w | -c | -m> <filename>" << std::endl;
+			return 1;
+		}
+       
+		switch (option) {
+        case 'c':
+            std::cout << "Bytes number " << countNumberofBytes(myFile) << std::endl;
+            break;
+        case 'l':
+            std::cout << "lines number " << countNumberofLines(myFile) << std::endl;
+            break;
+        case 'w':
+            std::cout << "word number " << countNumberOfWords(myFile) << std::endl;
+            break;
+        case 'm':
+            std::cout << "character " << countNumberOfCharacters(myFile) << std::endl;
+            break;
+        default:
+            std::cerr << "Invalid input\n";
+            return 1;
+        }
+    }
+    if (argc == 1) {
+        std::cerr << "No input provided\n";
+        return 1;
+    }
+    if (argc > 2) {
+        std::cerr << "Too many arguments\n";
+        return 1;
+    }
+    if (!checkValidInput(argv[1])) {
+        std::cerr << "Invalid input\n";
+        return 1;
+    }
+    if (!myFile) {
+        std::cerr << "Can't open File\n";
+        return 1;
+    }
 
-	return 0;
+
+
+    myFile.close();
+    return 0;
 }
 
 	
