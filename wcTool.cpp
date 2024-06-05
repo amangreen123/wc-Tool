@@ -36,7 +36,7 @@ int countNumberofLines(std::ifstream& f) {
 }
 
 int countNumberOfWords(std::ifstream& f) {
-	int numOfWords = 0;
+	int numberOfWords = 0;
 	std::string line;
 
 	while (std::getline(f, line)) {
@@ -45,11 +45,57 @@ int countNumberOfWords(std::ifstream& f) {
 		std::string word;
 
 		while (linestream >> word) { // Read word by word
-			++numOfWords;
+			++numberOfWords;
 		}
 	}
 
-	return numOfWords;
+	return numberOfWords;
+}
+
+int countNumberOfCharacters(std::ifstream& f) {	
+	
+	int numberOfCharacters = 0;
+	std::string lines{};
+	char current_char;
+
+	while (true) {
+
+		if (f.peek() == -1)
+			break;
+		current_char = f.get();
+
+		if (current_char != '\n')
+			++numberOfCharacters;
+	}
+
+	return numberOfCharacters;
+
+	/*while (f.get(current_char)) {
+
+		if (current_char == EOF) {
+			break;
+		}
+		numberOfCharacters++;
+		
+	}
+
+		return numberOfCharacters;*/
+
+	/*while (std::getline(f, lines)) {	
+		numberOfCharacters += lines.length();
+
+		return numberOfCharacters;
+		
+		gets 69
+	}*/
+
+
+	/*f.seekg(0, std::ios_base::end);
+	std::ios_base::streampos end_pos = f.tellg();
+	gets -1
+	return end_pos;*/
+
+
 }
 
 
@@ -65,14 +111,18 @@ int main(int argc, char* argv[]) {
 	}
 
 
-		int byteCount = countNumberofBytes(myFile);
-		int lineCount = countNumberofLines(myFile);
-		int wordCount = countNumberOfWords(myFile);
 
 
-		std::cout << "Number of bytes: " << byteCount << std::endl;
-		std::cout << "Number of lines: " << lineCount << std::endl;
-		std::cout << "Number of words: " << wordCount << std::endl;
+		//int byteCount = countNumberofBytes(myFile);
+		//int lineCount = countNumberofLines(myFile);
+		//int wordCount = countNumberOfWords(myFile);
+		int charCount = countNumberOfCharacters(myFile);
+
+
+		//std::cout << "Number of bytes: " << byteCount << std::endl;
+		//std::cout << "Number of lines: " << lineCount << std::endl;
+		//std::cout << "Number of words: " << wordCount << std::endl;
+		std::cout << "Number of characters" << charCount << std::endl;
 	
 	
 		//Bytes number 342190
