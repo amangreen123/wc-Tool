@@ -55,8 +55,6 @@ int countNumberOfWords(std::ifstream& f) {
 int countNumberOfCharacters(std::ifstream& f) {	
 	
 	int numberOfCharacters = 0;
-	std::string input;
-	std::string lines{};
 	char current_char = '\0';
 
 
@@ -82,59 +80,34 @@ bool checkValidInput(std::string input) {
 }
 
 
+//argc = argument count always equal 1 each command line argument the user provides will cause argc to increase by 1
+//argv = where the actual argument values are stored 
+
 int main(int argc, char* argv[]) {
-    std::string lines{};
-    std::ifstream myFile{ "test.txt" };
-    std::cout << argv[0] << std::endl;
-
     
-	char option = std::string(argv[1])[1];
+	std::string lines{};
+    std::ifstream myFile{ "test.txt" };
+    //std::cout << argv[0] << std::endl;
+
+	/*std::cout << "There are " << argc << " arguments:\n";
+
+	for (int count{ 0 }; count < argc; ++count)
+	{
+		std::cout << count << ' ' << argv[count] << '\n';
+	}*/
+
+	std::cout << "Enter a command";
+	std::string input{};
+
+	std::cin >> input;
+
+	std::cout << "You entered " << input << '\n';
 
 
-    if (argc == 2 && std::cin.peek()) {
-
-		if (!checkValidInput(std::string(argv[1])))
-		{
-			std::cerr << "Usage: " << argv[0] << " <-l | -w | -c | -m> <filename>" << std::endl;
-			return 1;
-		}
-       
-		switch (option) {
-        case 'c':
-            std::cout << "Bytes number " << countNumberofBytes(myFile) << std::endl;
-            break;
-        case 'l':
-            std::cout << "lines number " << countNumberofLines(myFile) << std::endl;
-            break;
-        case 'w':
-            std::cout << "word number " << countNumberOfWords(myFile) << std::endl;
-            break;
-        case 'm':
-            std::cout << "character " << countNumberOfCharacters(myFile) << std::endl;
-            break;
-        default:
-            std::cerr << "Invalid input\n";
-            return 1;
-        }
-    }
-    if (argc == 1) {
-        std::cerr << "No input provided\n";
-        return 1;
-    }
-    if (argc > 2) {
-        std::cerr << "Too many arguments\n";
-        return 1;
-    }
-    if (!checkValidInput(argv[1])) {
-        std::cerr << "Invalid input\n";
-        return 1;
-    }
     if (!myFile) {
         std::cerr << "Can't open File\n";
         return 1;
     }
-
-
 
     myFile.close();
     return 0;
