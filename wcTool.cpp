@@ -103,6 +103,8 @@ int main(int argc, char* argv[]) {
 
 	std::cout << "You entered " << input << '\n';
 
+
+
 	if (!checkValidInput(input)) {
 		std::cout << "Invalid input\n";
 		return 1;
@@ -125,15 +127,14 @@ int main(int argc, char* argv[]) {
 						}
 	}
 
-
-
     if (!myFile) {
         std::cerr << "Can't open File\n";
         return 1;
     }
 
     myFile.close();
-    return 0;
+    
+	return 0;
 }
 
 	
