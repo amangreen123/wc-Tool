@@ -57,8 +57,6 @@ int countNumberOfCharacters(std::ifstream& f) {
 	int numberOfCharacters = 0;
 	char current_char = '\0';
 
-
-
 	while (f.get(current_char)) {
 
 		if (current_char != '\n')
@@ -87,50 +85,55 @@ int main(int argc, char* argv[]) {
     
 	std::string lines{};
     std::ifstream myFile{ "test.txt" };
-    //std::cout << argv[0] << std::endl;
+	std::string input{};
 
-	/*std::cout << "There are " << argc << " arguments:\n";
+	if (argc != 3) {
+		std::cerr << "Invalid number of arguments\n";
+		return 1;
+	}
+	
+	std::cout << "There are " << argc << " arguments:\n";
 
+	// Loop through each argument and print its number and value
 	for (int count{ 0 }; count < argc; ++count)
 	{
 		std::cout << count << ' ' << argv[count] << '\n';
-	}*/
+	}
 
-	std::cout << "Enter a command";
-	std::string input{};
 
+	if (!myFile.is_open()) {
+		std::cerr << "File not found\n";
+		return 1;
+	}
+
+	std::cout << "Enter the option you want to use: -c, -l, -w, -m\n";
 	std::cin >> input;
-
-	std::cout << "You entered " << input << '\n';
-
-
 
 	if (!checkValidInput(input)) {
 		std::cout << "Invalid input\n";
 		return 1;
 		}
 
-	
-	swtich (input) {
-		case "-c":
-			std::cout << "Number of bytes: " << countNumberofBytes(myFile) << '\n';
-			break;
-			case "-l":
-				std::cout << "Number of lines: " << countNumberofLines(myFile) << '\n';
-				break;
-				case "-w":
-					std::cout << "Number of words: " << countNumberOfWords(myFile) << '\n';
-					break;
-					case "-m":
-						std::cout << "Number of characters: " << countNumberOfCharacters(myFile) << '\n';
-						break;
-						}
+	if (input == "-c") {
+		std::cout << argv[1] << " " << input << " " << countNumberofBytes(myFile) << " " << argv[2] << '\n';
+	}
+	else if (input == "-l") {
+		std::cout << argv[1] << " " << input << " " << countNumberofLines(myFile) << " " << argv[2] << '\n';
+	}
+	else if (input == "-w") {
+	    std::cout << argv[1] << " " << input << " " << countNumberOfWords(myFile) << " " << argv[2] << '\n';
+	}
+	else if (input == "-m") {
+		std::cout << argv[1] << " " << input << " " << countNumberOfCharacters(myFile) << " " << argv[2] << '\n';
+	}
+	else if (input == argv[2]) {
+		std::cout << countNumberofBytes(myFile) << " " << countNumberofLines(myFile) << " " << countNumberOfWords(myFile) << " " << countNumberOfCharacters(myFile) << '\n';
 	}
 
-    if (!myFile) {
-        std::cerr << "Can't open File\n";
-        return 1;
-    }
+	else {
+		std::cout << "Invalid input\n";
+		return 1;
+	}
 
     myFile.close();
     
