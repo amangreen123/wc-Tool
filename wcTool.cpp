@@ -103,6 +103,29 @@ int main(int argc, char* argv[]) {
 
 	std::cout << "You entered " << input << '\n';
 
+	if (!checkValidInput(input)) {
+		std::cout << "Invalid input\n";
+		return 1;
+		}
+
+	
+	swtich (input) {
+		case "-c":
+			std::cout << "Number of bytes: " << countNumberofBytes(myFile) << '\n';
+			break;
+			case "-l":
+				std::cout << "Number of lines: " << countNumberofLines(myFile) << '\n';
+				break;
+				case "-w":
+					std::cout << "Number of words: " << countNumberOfWords(myFile) << '\n';
+					break;
+					case "-m":
+						std::cout << "Number of characters: " << countNumberOfCharacters(myFile) << '\n';
+						break;
+						}
+	}
+
+
 
     if (!myFile) {
         std::cerr << "Can't open File\n";
