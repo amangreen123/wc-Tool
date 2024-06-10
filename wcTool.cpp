@@ -85,28 +85,24 @@ int main(int argc, char* argv[]) {
     
 	std::string lines{};
     std::ifstream myFile{ "test.txt" };
-	std::string input{};
 
-	if (argc != 3) {
+
+	if (argc != 2 && argc != 3) {
 		std::cerr << "Invalid number of arguments\n";
 		return 1;
 	}
-	
-	std::cout << "There are " << argc << " arguments:\n";
-
-	// Loop through each argument and print its number and value
-	for (int count{ 0 }; count < argc; ++count)
-	{
-		std::cout << count << ' ' << argv[count] << '\n';
-	}
-
 
 	if (!myFile.is_open()) {
 		std::cerr << "File not found\n";
 		return 1;
 	}
 
-	std::cout << "Enter the option you want to use: -c, -l, -w, -m\n";
+	//store the command line argument in a string
+	std::string input = argv[1];
+	
+	//display the command line argument
+	std::cout << input << " " << argv[2] <<'\n';
+
 	std::cin >> input;
 
 	if (!checkValidInput(input)) {
@@ -125,14 +121,6 @@ int main(int argc, char* argv[]) {
 	}
 	else if (input == "-m") {
 		std::cout << argv[1] << " " << input << " " << countNumberOfCharacters(myFile) << " " << argv[2] << '\n';
-	}
-	else if (input == argv[2]) {
-		std::cout << countNumberofBytes(myFile) << " " << countNumberofLines(myFile) << " " << countNumberOfWords(myFile) << " " << countNumberOfCharacters(myFile) << '\n';
-	}
-
-	else {
-		std::cout << "Invalid input\n";
-		return 1;
 	}
 
     myFile.close();
